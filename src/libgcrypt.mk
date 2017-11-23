@@ -3,8 +3,8 @@
 PKG             := libgcrypt
 $(PKG)_WEBSITE  := https://directory.fsf.org/wiki/Libgcrypt
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 1.7.6
-$(PKG)_CHECKSUM := 626aafee84af9d2ce253d2c143dc1c0902dda045780cc241f39970fc60be05bc
+$(PKG)_VERSION  := 1.8.1
+$(PKG)_CHECKSUM := 7a2875f8b1ae0301732e878c0cca2c9664ff09ef71408f085c50e332656a78b3
 $(PKG)_SUBDIR   := libgcrypt-$($(PKG)_VERSION)
 $(PKG)_FILE     := libgcrypt-$($(PKG)_VERSION).tar.bz2
 $(PKG)_URL      := https://gnupg.org/ftp/gcrypt/libgcrypt/$($(PKG)_FILE)
@@ -28,10 +28,19 @@ define $(PKG)_MAKE
     $(MAKE) -C '$(1)' -j '$(JOBS)' install bin_PROGRAMS= sbin_PROGRAMS= noinst_PROGRAMS=
     ln -sf '$(PREFIX)/$(TARGET)/bin/libgcrypt-config' '$(PREFIX)/bin/$(TARGET)-libgcrypt-config'
 
+    # create pkg-config file
+    $(INSTALL) -d '$(PREFIX)/$(TARGET)/lib/pkgconfig'
+    (echo 'Name: $(PKG)'; \
+     echo 'Version: $($(PKG)_VERSION)'; \
+     echo 'Description: $(PKG)'; \
+     echo 'Libs: ' "`$(TARGET)-libgcrypt-config --libs`"; \
+     echo 'Cflags: ' "`$(TARGET)-libgcrypt-config --cflags`";) \
+     > '$(PREFIX)/$(TARGET)/lib/pkgconfig/$(PKG).pc'
+
     '$(TARGET)-gcc' \
         -W -Wall -Werror -ansi -pedantic \
         '$(TEST_FILE)' -o '$(PREFIX)/$(TARGET)/bin/test-libgcrypt.exe' \
-        `$(TARGET)-libgcrypt-config --cflags --libs`
+        `$(TARGET)-pkg-config libgcrypt --cflags --libs`
 endef
 
 define $(PKG)_BUILD
