@@ -1,5 +1,4 @@
-# This file is part of MXE.
-# See index.html for further information.
+# This file is part of MXE. See LICENSE.md for further information.
 
 PKG             := tktable
 $(PKG)_OWNER    := https://github.com/highperformancecoder
@@ -26,12 +25,13 @@ define $(PKG)_UPDATE
 endef
 
 define $(PKG)_BUILD
-    cd '$(1)' && ./configure \
+    cd '$(BUILD_DIR)' && $(SOURCE_DIR)/configure \
         $(MXE_CONFIGURE_OPTS) \
         --without-x \
-        --with-tcl=$(PREFIX)/$(TARGET)/lib --with-tk=$(PREFIX)/$(TARGET)/lib
+        --with-tcl=$(PREFIX)/$(TARGET)/lib \
+        --with-tk=$(PREFIX)/$(TARGET)/lib
     # bizarrely, the Makefile links against -lX11 for no reason, even if
     # --without-x is specified
-    $(MAKE) -C '$(1)' -j '$(JOBS)' LIBS=
-    $(MAKE) -C '$(1)'  PKG_DIR= install
+    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' LIBS=
+    $(MAKE) -C '$(BUILD_DIR)'  PKG_DIR= install
 endef
