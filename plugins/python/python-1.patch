@@ -1,0 +1,16 @@
+This file is part of MXE. See LICENSE.md for licensing information.
+
+Fix incorrect case for standard windows header
+---
+diff -r -u Python-2.7.14/Modules/signalmodule.c Python-patched/Modules/signalmodule.c
+--- Python-2.7.14/Modules/signalmodule.c	2017-09-17 03:38:35.000000000 +1000
++++ Python-patched/Modules/signalmodule.c	2017-12-05 17:53:53.380732813 +1100
+@@ -7,7 +7,7 @@
+ #include "intrcheck.h"
+ 
+ #ifdef MS_WINDOWS
+-#include <Windows.h>
++#include <windows.h>
+ #ifdef HAVE_PROCESS_H
+ #include <process.h>
+ #endif
