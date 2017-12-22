@@ -1,48 +1,11 @@
---- tmp-pyqt4-i686-w64-mingw32.static/PyQt4_gpl_win-4.12.1/configure-ng.py	2017-06-30 09:46:00.000000000 +1000
-+++ PyQt4_gpl_win-4.12.1/configure-ng.py	2017-12-22 17:55:30.672294887 +1100
-@@ -671,25 +671,28 @@
- }
- ''' % out_file
+--- tmp-pyqt4-i686-w64-mingw32.static/PyQt4_gpl_win-4.12.1/configure-ng.py	2017-12-22 18:32:39.878059247 +1100
++++ PyQt4_gpl_win-4.12.1/configure-ng.py	2017-12-22 18:41:42.367554512 +1100
+@@ -2403,7 +2403,7 @@
+             spec = 'macx-g++'
  
--        cmd = compile_qt_program(self, verbose, 'qtdetail', source, 'QtCore')
--        if cmd is None:
--            error("Failed to determine the detail of your Qt installation. Try again using the --verbose flag to see more detail about the problem.")
-+#        cmd = compile_qt_program(self, verbose, 'qtdetail', source, 'QtCore')
-+#        if cmd is None:
-+#            error("Failed to determine the detail of your Qt installation. Try again using the --verbose flag to see more detail about the problem.")
+     if 'g++' in spec or 'clang' in spec:
+-        pro_lines.append('QMAKE_CXXFLAGS += -fno-exceptions')
++        pro_lines.append('QMAKE_CXXFLAGS += -fno-exceptions -fpermissive')
  
-         # Create the output file, first making sure it doesn't exist.
--        remove_file(out_file)
--        run_command(cmd, verbose)
--
--        if not os.access(out_file, os.F_OK):
--            error("%s failed to create %s. Make sure your Qt installation is correct." % (cmd, out_file))
--
--        # Read the details.
--        f = open(out_file)
--        lines = f.read().split('\n')
--        f.close()
--
--        self.qt_licensee = lines[0]
--        self.qt_shared = (lines[1] == 'shared')
--        self.pyqt_disabled_features = lines[2:-1]
-+#        remove_file(out_file)
-+#        run_command(cmd, verbose)
-+#        f = open_for_writing(out_file)
-+#        f.write('Open Source\nstatic\n')
-+#        f.close()
-+#
-+#        if not os.access(out_file, os.F_OK):
-+#            error("%s failed to create %s. Make sure your Qt installation is correct." % (cmd, out_file))
-+#
-+#        # Read the details.
-+#        f = open(out_file)
-+#        lines = f.read().split('\n')
-+#        f.close()
-+
-+        self.qt_licensee = 'Open Source'
-+        self.qt_shared = 0
-+        self.pyqt_disabled_features = []
- 
-         # Get the details of the Python interpreter library.
-         py_major = self.py_version >> 16
+     # This optimisation could apply to other platforms.
+     if 'linux' in spec and not target_config.static:
