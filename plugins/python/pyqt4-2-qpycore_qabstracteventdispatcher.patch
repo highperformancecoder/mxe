@@ -1,0 +1,15 @@
+--- tmp-pyqt4-i686-w64-mingw32.static/PyQt4_gpl_win-4.12.1/qpy/QtCore/qpycore_qabstracteventdispatcher.cpp	2017-06-30 09:46:08.000000000 +1000
++++ PyQt4_gpl_win-4.12.1/qpy/QtCore/qpycore_qabstracteventdispatcher.cpp	2017-12-27 12:01:13.751794816 +1100
+@@ -92,12 +92,7 @@
+ 
+     SIP_BLOCK_THREADS
+ 
+-#if defined(Q_WS_WIN)
+-    PyObject *msg_obj = sipConvertFromType(reinterpret_cast<MSG *>(message),
+-            sipType_MSG, 0);
+-#else
+     PyObject *msg_obj = sipConvertFromVoidPtr(message);
+-#endif
+ 
+     if (msg_obj)
+     {
