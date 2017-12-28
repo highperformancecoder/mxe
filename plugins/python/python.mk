@@ -15,6 +15,7 @@ $(PKG)_URL      := https://www.python.org/ftp/python/$($(PKG)_VERSION)/Python-$(
 define $(PKG)_BUILD
     # patch cannot add new files, so add them here
     cp plugins/python/{pyconfig.h,CMakeLists.txt} '$(SOURCE_DIR)'
+    cd '$(SOURCE_DIR)'/Modules && cp config.c.in config.c
     cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)' 
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
     $(MAKE) -C '$(BUILD_DIR)' install

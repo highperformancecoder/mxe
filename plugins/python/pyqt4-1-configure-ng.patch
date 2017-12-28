@@ -1,5 +1,14 @@
---- tmp-pyqt4-i686-w64-mingw32.static/PyQt4_gpl_win-4.12.1/configure-ng.py	2017-06-30 09:46:00.000000000 +1000
-+++ PyQt4_gpl_win-4.12.1/configure-ng.py	2017-12-22 18:41:42.367554512 +1100
+--- /tmp/PyQt4_gpl_win-4.12.1/configure-ng.py	2017-06-30 09:46:00.000000000 +1000
++++ PyQt4_gpl_win-4.12.1/configure-ng.py	2017-12-27 14:44:20.382480068 +1100
+@@ -430,7 +430,7 @@
+         self.py_inc_dir = py_config.inc_dir
+         self.py_venv_inc_dir = py_config.venv_inc_dir
+         self.py_lib_dir = py_config.lib_dir
+-        self.py_platform = py_config.platform
++        self.py_platform = 'mxe'
+         self.py_version = py_config.version
+         self.pyqt_bin_dir = py_config.bin_dir
+         self.pyqt_module_dir = py_config.module_dir
 @@ -671,25 +671,28 @@
  }
  ''' % out_file
@@ -14,18 +23,6 @@
          # Create the output file, first making sure it doesn't exist.
 -        remove_file(out_file)
 -        run_command(cmd, verbose)
--
--        if not os.access(out_file, os.F_OK):
--            error("%s failed to create %s. Make sure your Qt installation is correct." % (cmd, out_file))
--
--        # Read the details.
--        f = open(out_file)
--        lines = f.read().split('\n')
--        f.close()
--
--        self.qt_licensee = lines[0]
--        self.qt_shared = (lines[1] == 'shared')
--        self.pyqt_disabled_features = lines[2:-1]
 +#        remove_file(out_file)
 +#        run_command(cmd, verbose)
 +#        f = open_for_writing(out_file)
@@ -39,15 +36,57 @@
 +#        f = open(out_file)
 +#        lines = f.read().split('\n')
 +#        f.close()
-+
+ 
+-        if not os.access(out_file, os.F_OK):
+-            error("%s failed to create %s. Make sure your Qt installation is correct." % (cmd, out_file))
+-
+-        # Read the details.
+-        f = open(out_file)
+-        lines = f.read().split('\n')
+-        f.close()
+-
+-        self.qt_licensee = lines[0]
+-        self.qt_shared = (lines[1] == 'shared')
+-        self.pyqt_disabled_features = lines[2:-1]
 +        self.qt_licensee = 'Open Source'
 +        self.qt_shared = 0
 +        self.pyqt_disabled_features = []
  
          # Get the details of the Python interpreter library.
          py_major = self.py_version >> 16
-@@ -2400,7 +2403,7 @@
+@@ -1842,6 +1845,7 @@
+         else:
+             platform_exe = os.path.join('.', exe)
+ 
++    platform_exe = os.path.join('release', exe + '.exe')
+     remove_file(platform_exe)
+ 
+     args = [make, '-f', makefile_name]
+@@ -1850,7 +1854,7 @@
+         args.append(makefile_target)
+ 
+     run_command(' '.join(args), verbose)
+-
++    
+     return platform_exe if os.access(platform_exe, os.X_OK) else None
+ 
+ 
+@@ -2138,7 +2142,7 @@
+         sip_flags.append('PyQt_Deprecated_5_0')
+ 
+     # Handle the platform tag.
+-    if target_config.py_platform == 'win32':
++    if target_config.py_platform == 'win32' or target_config.py_platform == 'mxe':
+         plattag = 'WS_WIN'
+     elif target_config.py_platform == 'darwin':
+         plattag = 'WS_MACX'
+@@ -2398,9 +2402,12 @@
+         elif target_config.py_platform == 'darwin':
+             # It doesn't matter if the default was actually clang.
              spec = 'macx-g++'
++        elif target_config.py_platform == 'mxe':
++            # It doesn't matter if the default was actually clang.
++            spec = 'mxe-g++'
  
      if 'g++' in spec or 'clang' in spec:
 -        pro_lines.append('QMAKE_CXXFLAGS += -fno-exceptions')

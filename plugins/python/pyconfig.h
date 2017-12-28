@@ -191,7 +191,7 @@
 #define HAVE_DUP2 1
 
 /* Defined when any dynamic module loading is enabled. */
-#define HAVE_DYNAMIC_LOADING 1
+//#define HAVE_DYNAMIC_LOADING 1
 
 /* Define if you have the 'epoll' functions. */
 #define HAVE_EPOLL 1
@@ -282,7 +282,7 @@
 #define HAVE_GETCWD 1
 
 /* Define this if you have flockfile(), getc_unlocked(), and funlockfile() */
-#define HAVE_GETC_UNLOCKED 1
+//#define HAVE_GETC_UNLOCKED 1
 
 /* Define to 1 if you have the `getentropy' function. */
 #define HAVE_GETENTROPY 1
@@ -510,7 +510,7 @@
 #define HAVE_PATHCONF 1
 
 /* Define to 1 if you have the `pause' function. */
-#define HAVE_PAUSE 1
+//#define HAVE_PAUSE 1
 
 /* Define to 1 if you have the `plock' function. */
 /* #undef HAVE_PLOCK */
@@ -552,7 +552,7 @@
 #define HAVE_PUTENV 1
 
 /* Define to 1 if you have the `readlink' function. */
-#define HAVE_READLINK 1
+//#define HAVE_READLINK 1
 
 /* Define to 1 if you have the `realpath' function. */
 #define HAVE_REALPATH 1
@@ -651,7 +651,7 @@
 //#define HAVE_SIGACTION 1
 
 /* Define to 1 if you have the `siginterrupt' function. */
-#define HAVE_SIGINTERRUPT 1
+//#define HAVE_SIGINTERRUPT 1
 
 /* Define to 1 if you have the <signal.h> header file. */
 #define HAVE_SIGNAL_H 1
@@ -1101,7 +1101,7 @@
 /* #undef USE_TOOLBOX_OBJECT_GLUE */
 
 /* Define if a va_list is an array of some kind */
-#define VA_LIST_IS_ARRAY 1
+//#define VA_LIST_IS_ARRAY 1
 
 /* Define if you want SIGFPE handled (see Include/pyfpe.h). */
 /* #undef WANT_SIGFPE_HANDLER */

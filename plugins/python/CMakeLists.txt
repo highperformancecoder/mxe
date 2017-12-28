@@ -97,6 +97,19 @@ weakrefobject.h
 )
 
 set(SRCS
+Parser/acceler.c 
+Parser/grammar1.c 
+Parser/listnode.c
+Parser/node.c 
+Parser/parser.c 
+Parser/parsetok.c 
+Parser/bitset.c 
+Parser/metagrammar.c 
+Parser/firstsets.c 
+Parser/grammar.c
+Parser/pgen.c
+Parser/myreadline.c
+Parser/tokenizer.c
 Python/_warnings.c
 Python/Python-ast.c 
 Python/asdl.c 
@@ -139,8 +152,7 @@ Python/pystrtod.c
 Python/dtoa.c 
 Python/formatter_unicode.c 
 Python/formatter_string.c 
-#Python/dynload_shlib.c
-#		$(MACHDEP_OBJS) 
+#Python/dynload_win.c
 Python/thread.c
 Objects/abstract.c 
 Objects/boolobject.c 
@@ -197,6 +209,7 @@ Modules/_weakref.c
 Modules/zipimport.c
 Modules/symtablemodule.c
 Modules/xxsubtype.c
+Modules/getbuildinfo.c
 )
 
 add_library(python${VERSION} ${SRCS})
