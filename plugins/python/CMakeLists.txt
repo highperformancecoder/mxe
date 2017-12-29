@@ -194,6 +194,9 @@ Objects/weakrefobject.c
 Objects/unicodeobject.c
 Objects/unicodectype.c
 
+Modules/mathmodule.c 
+Modules/_math.c 
+#Modules/atexitmodule.c 
 Modules/config.c 
 Modules/getpath.c 
 Modules/main.c 
@@ -221,3 +224,4 @@ INSTALL(TARGETS python2.7 ARCHIVE DESTINATION lib INCLUDES DESTINATION
 include/python${VERSION})
 INSTALL(FILES pyconfig.h DESTINATION include/python${VERSION})
 INSTALL(DIRECTORY Include/ DESTINATION include/python${VERSION} FILES_MATCHING PATTERN "*.h")
+INSTALL(DIRECTORY Lib/ DESTINATION lib/python${VERSION} FILES_MATCHING PATTERN "*.py")
