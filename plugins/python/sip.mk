@@ -21,9 +21,8 @@ define $(PKG)_BUILD
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
     cp '$(BUILD_DIR)'/sip $(PREFIX)/bin/$(TARGET)-sip
     rm '$(BUILD_DIR)'/Makefile
+    echo "LIBS+=-lpython2.7.dll" >>'$(SOURCE_DIR)'/siplib/siplib.pro
     cd '$(BUILD_DIR)' && $(PREFIX)/bin/$(TARGET)-qmake-qt4 '$(SOURCE_DIR)'/siplib/siplib.pro
-#    cp plugins/python/CMakeLists.txt.sip '$(SOURCE_DIR)'/CMakeLists.txt
-#    cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)' 
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
     $(MAKE) -C '$(BUILD_DIR)' install
 endef
