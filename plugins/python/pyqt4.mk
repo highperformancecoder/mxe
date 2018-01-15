@@ -16,7 +16,7 @@ define $(PKG)_UPDATE
 endef
 
 define $(PKG)_BUILD
-     cd $(SOURCE_DIR) && python configure-ng.py --qmake=$(PREFIX)/$(TARGET)/qt/bin/qmake --sip=$(PREFIX)/bin/$(TARGET)-sip $(if $(BUILD_STATIC),--static,) --confirm-license --verbose --no-tools --sipdir $(PREFIX)/$(TARGET)/share/sip/PyQt4 --destdir=$(PREFIX)/$(TARGET)/lib/python2.7/site-packages --sysroot=$(PREFIX)/$(TARGET)
+     cd $(SOURCE_DIR) && python configure-ng.py --qmake=$(PREFIX)/$(TARGET)/qt/bin/qmake --sip=$(PREFIX)/bin/$(TARGET)-sip $(if $(BUILD_STATIC),--static,--assume-shared) --confirm-license --verbose --no-tools --sipdir $(PREFIX)/$(TARGET)/share/sip/PyQt4 --destdir=$(PREFIX)/$(TARGET)/lib/python2.7/site-packages --sysroot=$(PREFIX)/$(TARGET)
      $(MAKE) -C '$(1)' -j '$(JOBS)'
      $(MAKE) -C '$(1)' -j install
 endef

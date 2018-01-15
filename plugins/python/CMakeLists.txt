@@ -218,8 +218,8 @@ Modules/getbuildinfo.c
 )
 
 add_library(python${VERSION} ${SRCS})
-target_link_libraries(python${VERSION})
 target_include_directories(python${VERSION} PUBLIC Include . PC)
+set_target_properties(python${VERSION} PROPERTIES SUFFIX ".a")
 set(COMPILE_DEFINITIONS MS_WINDOWS)
 
 INSTALL(TARGETS python2.7 ARCHIVE DESTINATION lib INCLUDES DESTINATION

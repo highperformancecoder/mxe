@@ -20,4 +20,8 @@ define $(PKG)_BUILD
     cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)' 
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
     $(MAKE) -C '$(BUILD_DIR)' install
+# for some reason, cmake insists on building to libpython2.7.dll.a, but other software (PyQt looking at you) expects libpython27.a
+    if [ -z "$(BUILD_STATIC)" ]; then \
+      ln -sf $(PREFIX)/$(TARGET)/lib/libpython2.7.dll.a $(PREFIX)/$(TARGET)/lib/libpython27.a; \
+    fi
 endef
