@@ -1,0 +1,25 @@
+--- /tmp/Python-2.7.14/Python/thread.c	2017-09-17 03:38:35.000000000 +1000
++++ Python-2.7.14/Python/thread.c	2018-01-15 13:55:06.232473767 +1100
+@@ -117,6 +117,11 @@
+ #undef _POSIX_THREADS
+ #endif
+ 
++#ifdef NT_THREADS
++#include "thread_nt.h"
++#undef _POSIX_THREADS
++#endif
++
+ #ifdef _POSIX_THREADS
+ #include "thread_pthread.h"
+ #endif
+@@ -125,10 +130,6 @@
+ #include "thread_cthread.h"
+ #endif
+ 
+-#ifdef NT_THREADS
+-#include "thread_nt.h"
+-#endif
+-
+ #ifdef OS2_THREADS
+ #include "thread_os2.h"
+ #endif

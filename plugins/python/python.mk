@@ -11,6 +11,7 @@ $(PKG)_DEPS     :=
 $(PKG)_FILE     := Python-$($(PKG)_VERSION).tgz
 $(PKG)_SUBDIR   := Python-$($(PKG)_VERSION)
 $(PKG)_URL      := https://www.python.org/ftp/python/$($(PKG)_VERSION)/Python-$($(PKG)_VERSION).tgz
+$(PKG)_DEPS     := gcc pthreads
 
 define $(PKG)_BUILD
     # patch cannot add new files, so add them here

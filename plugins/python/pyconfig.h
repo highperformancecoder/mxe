@@ -22,6 +22,8 @@
 /* Define if you have the Mach cthreads package */
 /* #undef C_THREADS */
 
+#define NT_THREADS 1
+
 /* Define if C doubles are 64-bit IEEE 754 binary format, stored in ARM
    mixed-endian order (byte order 45670123) */
 /* #undef DOUBLE_IS_ARM_MIXED_ENDIAN_IEEE754 */
@@ -528,7 +530,7 @@
 #define HAVE_PROTOTYPES 1
 
 /* Define if you have GNU PTH threads. */
-/* #undef HAVE_PTH */
+//#define HAVE_PTH 1
 
 /* Define to 1 if you have the `pthread_atfork' function. */
 #define HAVE_PTHREAD_ATFORK 1
@@ -537,7 +539,7 @@
 /* #undef HAVE_PTHREAD_DESTRUCTOR */
 
 /* Define to 1 if you have the <pthread.h> header file. */
-#define HAVE_PTHREAD_H 1
+//#define HAVE_PTHREAD_H 1
 
 /* Define to 1 if you have the `pthread_init' function. */
 /* #undef HAVE_PTHREAD_INIT */
@@ -1196,7 +1198,7 @@
 /* #undef _POSIX_SOURCE */
 
 /* Define if you have POSIX threads, and your system does not define that. */
-/* #undef _POSIX_THREADS */
+#undef _POSIX_THREADS
 
 /* Define to force use of thread-safe errno, h_errno, and other functions */
 /* #undef _REENTRANT */

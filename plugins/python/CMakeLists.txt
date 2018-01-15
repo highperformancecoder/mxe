@@ -99,6 +99,7 @@ weakrefobject.h
 set(SRCS
 Parser/acceler.c 
 Parser/grammar1.c 
+Parser/intrcheck.c
 Parser/listnode.c
 Parser/node.c 
 Parser/parser.c 
@@ -120,7 +121,7 @@ Python/compile.c
 Python/codecs.c 
 Python/errors.c 
 Python/frozen.c 
-Python/frozenmain.c 
+#Python/frozenmain.c 
 Python/future.c 
 Python/getargs.c 
 Python/getcompiler.c 
@@ -142,6 +143,7 @@ Python/pymath.c
 Python/pystate.c 
 Python/pythonrun.c 
 Python/random.c 
+Python/sigcheck.c 
 Python/structmember.c 
 Python/symtable.c 
 Python/sysmodule.c 
@@ -201,8 +203,8 @@ Modules/config.c
 Modules/getpath.c 
 Modules/main.c 
 Modules/gcmodule.c
-Modules/threadmodule.c
-Modules/signalmodule.c
+#Modules/threadmodule.c
+#Modules/signalmodule.c
 #Modules/posixmodule.c
 Modules/errnomodule.c
 #Modules/pwdmodule.c

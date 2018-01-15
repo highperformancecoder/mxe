@@ -8,7 +8,7 @@ $(PKG)_CHECKSUM := f3d80120ee1fcf34bd30bb7be68b67da938a3afbd9a8ed7c0de7ed193b859
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
 $(PKG)_FILE     := sip-$($(PKG)_VERSION).zip
 $(PKG)_URL      := https://$(SOURCEFORGE_MIRROR)/project/pyqt/$(PKG)/$(PKG)-$($(PKG)_VERSION)/$(PKG)-$($(PKG)_VERSION).zip
-DEPS     := gcc python
+$(PKG)_DEPS     := gcc python qt
 
 define $(PKG)_UPDATE
     echo 'TODO: write update script for $(PKG).' >&2;
@@ -16,7 +16,7 @@ define $(PKG)_UPDATE
 endef
 
 define $(PKG)_BUILD
-    cd '$(SOURCE_DIR)' && python configure.py --use-qmake --sysroot=/home/rks/github/mxe/usr/i686-w64-mingw32.static
+    cd '$(SOURCE_DIR)' && python configure.py --use-qmake --sysroot=$(PREFIX)//$(TARGET)
     cd '$(BUILD_DIR)' && qmake '$(SOURCE_DIR)'/sipgen/sipgen.pro
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
     cp '$(BUILD_DIR)'/sip $(PREFIX)/bin/$(TARGET)-sip
