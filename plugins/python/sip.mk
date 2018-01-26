@@ -25,4 +25,6 @@ define $(PKG)_BUILD
     cd '$(BUILD_DIR)' && $(PREFIX)/bin/$(TARGET)-qmake-qt4 '$(SOURCE_DIR)'/siplib/siplib.pro
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
     $(MAKE) -C '$(BUILD_DIR)' install
+# build puts sip.pyd in a different location than make install expects. Silently fail for statis builds
+    -cp '$(BUILD_DIR)'/sip.pyd $(PREFIX)/$(TARGET)/lib/python2.7
 endef

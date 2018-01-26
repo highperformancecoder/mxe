@@ -154,7 +154,7 @@ Python/pystrtod.c
 Python/dtoa.c 
 Python/formatter_unicode.c 
 Python/formatter_string.c 
-#Python/dynload_win.c
+Python/dynload_win.c
 Python/thread.c
 Objects/abstract.c 
 Objects/boolobject.c 
@@ -219,11 +219,10 @@ Modules/getbuildinfo.c
 
 add_library(python${VERSION} ${SRCS})
 target_include_directories(python${VERSION} PUBLIC Include . PC)
-set_target_properties(python${VERSION} PROPERTIES SUFFIX ".a")
+#set_target_properties(python${VERSION} PROPERTIES SUFFIX ".a")
 set(COMPILE_DEFINITIONS MS_WINDOWS)
 
-INSTALL(TARGETS python2.7 ARCHIVE DESTINATION lib INCLUDES DESTINATION
-include/python${VERSION})
+INSTALL(TARGETS python2.7 ARCHIVE DESTINATION lib RUNTIME DESTINATION bin INCLUDES DESTINATION include/python${VERSION})
 INSTALL(FILES pyconfig.h DESTINATION include/python${VERSION})
 INSTALL(DIRECTORY Include/ DESTINATION include/python${VERSION} FILES_MATCHING PATTERN "*.h")
 INSTALL(DIRECTORY Lib/ DESTINATION lib/python${VERSION} FILES_MATCHING PATTERN "*.py")
