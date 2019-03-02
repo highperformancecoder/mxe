@@ -7,7 +7,7 @@ $(PKG)_IGNORE   := 7.6%
 $(PKG)_VERSION  := 7.4.8
 $(PKG)_CHECKSUM := b985816abc69df5781d6d9fcf081e03a3a1e44032030d0a2c28f8de731e7f20f
 $(PKG)_GH_CONF  := ivmai/libatomic_ops/tags,v
-$(PKG)_DEPS     := gcc
+$(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD
     # build and install the library
@@ -29,7 +29,7 @@ define $(PKG)_BUILD
 
     # compile test
     '$(TARGET)-gcc' \
-        -W -Wall -Werror -pedantic \
+        -W -Wall -Werror -pedantic -std=c99 \
         '$(SOURCE_DIR)/tests/test_stack.c' -o '$(PREFIX)/$(TARGET)/bin/test-$(PKG).exe' \
         `'$(TARGET)-pkg-config' atomic_ops_gpl --cflags --libs`
 endef

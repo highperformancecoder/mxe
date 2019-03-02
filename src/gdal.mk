@@ -1,16 +1,15 @@
 # This file is part of MXE. See LICENSE.md for licensing information.
 
 PKG             := gdal
-$(PKG)_WEBSITE  := http://www.gdal.org/
+$(PKG)_WEBSITE  := https://www.gdal.org/
 $(PKG)_DESCR    := GDAL
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 2.2.2
-$(PKG)_CHECKSUM := 14c1f78a60f429ad51c08d75cbf49771f1e6b20e7385c6e8379b40e8dfa39544
+$(PKG)_VERSION  := 2.2.4
+$(PKG)_CHECKSUM := 441eb1d1acb35238ca43a1a0a649493fc91fdcbab231d0747e9d462eea192278
 $(PKG)_SUBDIR   := gdal-$($(PKG)_VERSION)
-$(PKG)_FILE     := gdal-$($(PKG)_VERSION).tar.gz
-$(PKG)_URL      := http://download.osgeo.org/gdal/$($(PKG)_VERSION)/$($(PKG)_FILE)
-$(PKG)_URL_2    := ftp://ftp.remotesensing.org/gdal/$($(PKG)_VERSION)/$($(PKG)_FILE)
-$(PKG)_DEPS     := gcc armadillo curl expat geos giflib gta hdf4 hdf5 \
+$(PKG)_FILE     := gdal-$($(PKG)_VERSION).tar.xz
+$(PKG)_URL      := https://download.osgeo.org/gdal/$($(PKG)_VERSION)/$($(PKG)_FILE)
+$(PKG)_DEPS     := cc armadillo curl expat geos giflib gta hdf4 hdf5 \
                    jpeg json-c libgeotiff libmysqlclient libpng libxml2 \
                    netcdf openjpeg postgresql proj spatialite sqlite tiff zlib
 

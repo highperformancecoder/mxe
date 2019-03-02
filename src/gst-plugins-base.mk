@@ -3,12 +3,12 @@
 PKG             := gst-plugins-base
 $(PKG)_WEBSITE  := https://gstreamer.freedesktop.org/modules/gst-plugins-base.html
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 1.12.3
-$(PKG)_CHECKSUM := d3d37b8489d37fa0018973d850bd2067b98af335fef2fa543ee7d40359e3cea5
+$(PKG)_VERSION  := 1.14.4
+$(PKG)_CHECKSUM := ca6139490e48863e7706d870ff4e8ac9f417b56f3b9e4b3ce490c13b09a77461
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://gstreamer.freedesktop.org/src/$(PKG)/$($(PKG)_FILE)
-$(PKG)_DEPS     := gcc glib gstreamer liboil libxml2 ogg pango theora vorbis
+$(PKG)_DEPS     := cc glib gstreamer liboil libxml2 ogg pango theora vorbis
 
 $(PKG)_UPDATE = $(subst gstreamer/refs,gst-plugins-base/refs,$(gstreamer_UPDATE))
 
