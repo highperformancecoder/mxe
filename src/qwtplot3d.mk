@@ -14,6 +14,9 @@ $(PKG)_QT_DIR   := qt5
 define $(PKG)_BUILD
     cd '$(BUILD_DIR)' && '$(PREFIX)/$(TARGET)/$($(PKG)_QT_DIR)/bin/qmake' '$(SOURCE_DIR)'
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
-    $(MAKE) -C '$(BUILD_DIR)' -j 1 install
+# qmake bizarrely not generating an install target!!
+#    $(MAKE) -C '$(BUILD_DIR)' -j 1 install
+    cp -r '$(SOURCE_DIR)/include' '$(PREFIX)/$(TARGET)/include/qwtplot3d'
+    cp -r '$(BUILD_DIR)/lib/libqwtplot3d.a' '$(PREFIX)/$(TARGET)/lib'
 endef
 
