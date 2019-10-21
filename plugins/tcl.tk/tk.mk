@@ -26,6 +26,6 @@ define $(PKG)_BUILD
         --with-tcl='$(PREFIX)/$(TARGET)/lib' \
         $(if $(findstring x86_64,$(TARGET)), --enable-64bit) \
         CFLAGS='-D__MINGW_EXCPT_DEFINE_PSDK'
-    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
-    $(MAKE) -C '$(BUILD_DIR)' -j 1 install
+    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' LIBS='-lmincore -lnetapi32 -lz -ltclstub86 -limm32 -lcomctl32 -luuid -lole32'
+    $(MAKE) -C '$(BUILD_DIR)' -j 1 install 
 endef
