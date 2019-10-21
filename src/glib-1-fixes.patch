@@ -641,3 +641,36 @@ index 1111111..2222222 100644
  #ifdef G_OS_WIN32
        g_type_ensure (_g_winhttp_vfs_get_type ());
  #endif
+--- a/gio/gdbusauth.c	2019-10-21 13:19:47.578536053 +1100
++++ b/gio/gdbusauth.c	2019-10-21 13:20:06.758245218 +1100
+@@ -1295,9 +1295,9 @@
+                                                     &line_length,
+                                                     cancellable,
+                                                     error);
+-          debug_print ("SERVER: WaitingForBegin, read '%s'", line);
+           if (line == NULL)
+             goto out;
++          debug_print ("SERVER: WaitingForBegin, read '%s'", line);
+           if (g_strcmp0 (line, "BEGIN") == 0)
+             {
+               /* YAY, done! */
+--- a/gio/gdbusmessage.c	2019-10-21 13:36:13.594991027 +1100
++++ b/gio/gdbusmessage.c	2016-11-08 02:25:28.000000000 +1100
+@@ -2695,7 +2695,6 @@
+   if (message->body != NULL)
+     {
+       gchar *tupled_signature_str;
+-      tupled_signature_str = g_strdup_printf ("(%s)", signature_str);
+       if (signature == NULL)
+         {
+           g_set_error (error,
+@@ -2706,7 +2705,8 @@
+           g_free (tupled_signature_str);
+           goto out;
+         }
+-      else if (g_strcmp0 (tupled_signature_str, g_variant_get_type_string (message->body)) != 0)
++      tupled_signature_str = g_strdup_printf ("(%s)", signature_str);
++      if (g_strcmp0 (tupled_signature_str, g_variant_get_type_string (message->body)) != 0)
+         {
+           g_set_error (error,
+                        G_IO_ERROR,
