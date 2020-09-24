@@ -72,10 +72,10 @@ define $(PKG)_BUILD
         -W -Wall -Werror -ansi -U__STRICT_ANSI__ -pedantic \
         '$(PWD)/src/$(PKG)-test.cpp' -o '$(PREFIX)/$(TARGET)/bin/test-boost.exe' \
         -DBOOST_THREAD_USE_LIB \
-        -lboost_serialization-mt-x32 \
-        -lboost_system-mt-x32 \
-        -lboost_chrono-mt-x32 \
-        -lboost_context-mt-x32
+        -lboost_serialization-mt-x$(BITS) \
+        -lboost_system-mt-x$(BITS) \
+        -lboost_chrono-mt-x$(BITS) \
+        -lboost_context-mt-x$(BITS)
 
     # test cmake
     mkdir '$(1).test-cmake'
