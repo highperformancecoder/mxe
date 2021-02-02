@@ -4,8 +4,8 @@ PKG             := qtxlsxwriter
 $(PKG)_WEBSITE  := https://github.com/VSRonin/QtXlsxWriter/
 $(PKG)_DESCR    := QtXlsxWriter
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 5b685b5
-$(PKG)_CHECKSUM := 5f0abd0a63d69b119bac8e4df98484476ec707f8d395ed9bd4c59c59e817b2f2
+$(PKG)_VERSION  := 57021ef
+$(PKG)_CHECKSUM := 8c0a360a050ab894f0d5ca9f4e5e3466648bca9a75cd1b426fd42cedc21e7535
 $(PKG)_GH_CONF  := VSRonin/QtXlsxWriter/branches/master
 $(PKG)_DEPS     := cc qtbase
 
